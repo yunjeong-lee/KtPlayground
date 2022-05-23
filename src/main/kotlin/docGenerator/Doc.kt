@@ -1,5 +1,8 @@
 package docGenerator
 
+import org.jetbrains.kotlin.cli.common.CLIConfigurationKeys
+import org.jetbrains.kotlin.cli.common.messages.MessageRenderer
+import org.jetbrains.kotlin.cli.common.messages.PrintingMessageCollector
 import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
 import org.jetbrains.kotlin.com.intellij.openapi.Disposable
@@ -63,6 +66,7 @@ fun generateDocs() {
 fun createKtFile(codeString: String, fileName: String): KtFile {
     val disposable: Disposable = Disposer.newDisposable()
     val config = CompilerConfiguration()
+    config.put(CLIConfigurationKeys.MESSAGE_COLLECTOR_KEY, PrintingMessageCollector(System.err, MessageRenderer.PLAIN_FULL_PATHS, false))
     val configFiles: EnvironmentConfigFiles = EnvironmentConfigFiles.JVM_CONFIG_FILES
     try {
         val env =
