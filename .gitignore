@@ -24,9 +24,6 @@ hs_err_pid*
 
 .gradle/
 .idea/
+build/
 build/**
-*.tab
-*.tab_i
-*.len
-*.at
-*.tab.keystream
+**/build
